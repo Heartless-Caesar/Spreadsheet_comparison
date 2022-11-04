@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Spreadsheet comparison program</string>
   </property>
   <widget class="QPushButton" name="select_file_two_button">
    <property name="geometry">

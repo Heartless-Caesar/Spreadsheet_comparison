@@ -38,7 +38,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Spreadsheet comparison program"))
         self.select_file_two_button.setText(_translate("Dialog", "Selecionar arquivo 2"))
         self.select_file_one_button.setText(_translate("Dialog", "Selecionar arquivo 1"))
         self.execute_button.setText(_translate("Dialog", "Executar"))
