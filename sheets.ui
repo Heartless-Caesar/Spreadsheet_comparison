@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="select_file_two_button">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>120</y>
+     <x>10</x>
+     <y>110</y>
      <width>111</width>
      <height>23</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QPushButton" name="select_file_one_button">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>10</y>
+     <x>10</x>
+     <y>50</y>
      <width>111</width>
      <height>23</height>
     </rect>
@@ -55,27 +55,76 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>150</x>
      <y>50</y>
-     <width>321</width>
+     <width>211</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string></string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>170</y>
-     <width>321</width>
+     <x>150</x>
+     <y>110</y>
+     <width>231</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string></string>
+    <string/>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>170</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>181</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Arquivo primário</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>85</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Arquivo secundário</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Os arquivos são semelhantes?</string>
    </property>
   </widget>
  </widget>
