@@ -74,14 +74,13 @@ class SecondWindow(QWidget):
 
         if df_1.shape == df_2.shape:
 
-            df_diff = df_1.compare(df_2, keep_shape=True,
-                                   result_names=("1", "2"))
+            df_diff = df_1.compare(df_2)
 
             print(df_diff)
 
             # print(df_diff.to_excel(os.getcwd()/"Diff.xlsx"))
 
-            self.load_excel_data(df_diff)
+            # self.load_excel_data(df_diff)
 
         else:
             print("Files are not similar")
