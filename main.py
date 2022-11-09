@@ -15,7 +15,7 @@ class MainWindow(QDialog):
         # Selecionar se os arquivos tem o mesmo numero de 
         self.combobox = self.findChild(QComboBox,"comboBox")
         self.combobox.addItems(["Sim","Não"])
-
+           
          # Propriedades que irão ter o nome do arquivo para o pandas processar
         self.fname_one = ""
         self.fname_two = ""
@@ -59,13 +59,17 @@ class MainWindow(QDialog):
                      
 
     def open_second_window(self):
-        var_1 = str(self.fname_one).split("/")[-1].split("'")[0]
-        var_2 = str(self.fname_two).split("/")[-1].split("'")[0]
+       try: 
+        if str(self.fname_one).split("/")[-1].split("'")[0] and str(self.fname_two).split("/")[-1].split("'")[0] != "" or "(":
+            self.sw = SecondWindow(str(self.fname_one).split("/")[-1].split("'")[0], str(self.fname_two).split("/")[-1].split("'")[0],self.combobox.currentData())
+            self.sw.show() 
+       
+       except OSError:
+        print("Algum erro ocorreu") 
 
-        if FileNotFoundError: 
-            return
-        self.sw = SecondWindow(var_1, var_2)
-        self.sw.show()
+        
+        
+
 
 # Inicializa a aplicação
 def start_app():

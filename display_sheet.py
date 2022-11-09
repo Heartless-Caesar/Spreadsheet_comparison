@@ -1,10 +1,11 @@
 from PyQt5.QtWidgets import QWidget,QTableWidget, QTableWidgetItem, QHeaderView, QApplication, QMainWindow, QVBoxLayout, QPushButton,QTableWidgetItem
 from PyQt5.QtCore import QAbstractTableModel
+import xlwings as xlw
 from PyQt5 import uic
 import pandas as pd
 
 class SecondWindow(QWidget):
-    def __init__(self,fname_one,fname_two,parent=None):
+    def __init__(self,fname_one,fname_two,option,parent=None):
         super().__init__()
         self.setWindowTitle("Table view")
         self.window_two = QMainWindow()
@@ -14,9 +15,13 @@ class SecondWindow(QWidget):
         uic.loadUi("table_view.ui")
 
         try:
-            self.compare_sheets(fname_one,fname_two)
+            if option == "Sim":
+                self.compare_same_shape(fname_one,fname_two)
+            else:
+                self.compare_sheets(fname_one,fname_two)
+
         except:
-            print("An error occured")    
+            return  
     
     def load_excel_data(self, df_model):
 
@@ -62,4 +67,12 @@ class SecondWindow(QWidget):
 
         self.load_excel_data(df_diff)
 
-    
+    def compare_same_shape(self,file_one, file_two):
+        df_1 = pd.read_excel(file_one,index_col=0)
+        df_2 = pd.read_excel(file_two,index_col=0)
+
+        if df_1.shape == df_2.shape:
+            df_diff = file_one.compare(df_2, align_axis=0)
+            self.load_excel_data(df_diff)
+        else:
+            print("Files are not similar")    
