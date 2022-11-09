@@ -1,36 +1,39 @@
-from PyQt5.QtWidgets import QApplication, QPushButton,QLabel, QFileDialog,QDialog,QComboBox,QMainWindow, QMessageBox,QVBoxLayout, QTableWidget, QWidget
+from PyQt5.QtWidgets import QApplication, QPushButton, QLabel, QFileDialog, QDialog, QComboBox, QMainWindow, QMessageBox, QVBoxLayout, QTableWidget, QWidget
 from display_sheet import SecondWindow
 from PyQt5 import uic
 
-class MainWindow(QDialog):    
+
+class MainWindow(QDialog):
     def __init__(self):
-        super(MainWindow,self).__init__()
+        super(MainWindow, self).__init__()
 
         # Carrega o arquivo UI que será utilizado
-        self.window = uic.loadUi("sheets.ui",self)
-        
+        self.window = uic.loadUi("sheets.ui", self)
+
         # Carrega tela para alertas diversos
         self.message = QMessageBox()
 
-        # Selecionar se os arquivos tem o mesmo numero de 
-        self.combobox = self.findChild(QComboBox,"comboBox")
-        self.combobox.addItems(["Sim","Não"])
-           
-         # Propriedades que irão ter o nome do arquivo para o pandas processar
+        # Selecionar se os arquivos tem o mesmo numero de
+        self.combobox = self.findChild(QComboBox, "comboBox")
+        self.combobox.addItems(["Sim", "Não"])
+
+        # Propriedades que irão ter o nome do arquivo para o pandas processar
         self.fname_one = ""
         self.fname_two = ""
 
         # Elementos do UI que serão manipulados de alguma forma
-        self.select_file_one_button = self.findChild(QPushButton,"select_file_one_button")
-        self.select_file_two_button = self.findChild(QPushButton,"select_file_two_button")
-        self.execute_button = self.findChild(QPushButton,"execute_button")
-        self.cancel_button = self.findChild(QPushButton,"cancel_button")
+        self.select_file_one_button = self.findChild(
+            QPushButton, "select_file_one_button")
+        self.select_file_two_button = self.findChild(
+            QPushButton, "select_file_two_button")
+        self.execute_button = self.findChild(QPushButton, "execute_button")
+        self.cancel_button = self.findChild(QPushButton, "cancel_button")
 
         # Label arquivo 1
-        self.label_one = self.findChild(QLabel,"label")
-        
-        # Label arquivo 2  
-        self.label_two = self.findChild(QLabel,"label_2")
+        self.label_one = self.findChild(QLabel, "label")
+
+        # Label arquivo 2
+        self.label_two = self.findChild(QLabel, "label_2")
 
         # Opens dialog
         self.select_file_one_button.clicked.connect(self.open_file_dialog_one)
@@ -41,34 +44,35 @@ class MainWindow(QDialog):
 
     def open_file_dialog_one(self):
         try:
-         self.fname_one = QFileDialog.getOpenFileName(self, "Selecione um arquivo","","(*.xlsx);;(*.ods);;All Files (*)")   
+            self.fname_one = QFileDialog.getOpenFileName(
+                self, "Selecione um arquivo", "", "(*.xlsx);;(*.ods);;All Files (*)")
 
-         if str(self.fname_one) != '':
-            self.label_one.setText(str(self.fname_one).split("/")[-1].split("'")[0])
+            if str(self.fname_one) != '':
+                self.label_one.setText(
+                    str(self.fname_one).split("/")[-1].split("'")[0])
         except FileNotFoundError as e:
-            print("Escolha dois arquivos para realizar a comparação " + str(e))   
+            print("Escolha dois arquivos para realizar a comparação " + str(e))
 
     def open_file_dialog_two(self):
         try:
-         self.fname_two = QFileDialog.getOpenFileName(self, "Selecione um arquivo","","(*.xlsx);;(*.ods);;All Files (*)")   
+            self.fname_two = QFileDialog.getOpenFileName(
+                self, "Selecione um arquivo", "", "(*.xlsx);;(*.ods);;All Files (*)")
 
-         if str(self.fname_two) != '':
-            self.label_two.setText(str(self.fname_two).split("/")[-1].split("'")[0]) 
+            if str(self.fname_two) != '':
+                self.label_two.setText(
+                    str(self.fname_two).split("/")[-1].split("'")[0])
         except FileNotFoundError as e:
-            print("Escolha dois arquivos para realizar a comparação " + str(e))     
-                     
+            print("Escolha dois arquivos para realizar a comparação " + str(e))
 
     def open_second_window(self):
-       try: 
-        if str(self.fname_one).split("/")[-1].split("'")[0] and str(self.fname_two).split("/")[-1].split("'")[0] != "" or "(":
-            self.sw = SecondWindow(str(self.fname_one).split("/")[-1].split("'")[0], str(self.fname_two).split("/")[-1].split("'")[0],self.combobox.currentData())
-            self.sw.show() 
-       
-       except OSError:
-        print("Algum erro ocorreu") 
+        try:
+            if str(self.fname_one).split("/")[-1].split("'")[0] and str(self.fname_two).split("/")[-1].split("'")[0] != "" or "(":
+                self.sw = SecondWindow(str(self.fname_one).split("/")[-1].split("'")[0], str(
+                    self.fname_two).split("/")[-1].split("'")[0], str(self.combobox.currentText()))
+                self.sw.show()
 
-        
-        
+        except OSError:
+            print("Algum erro ocorreu")
 
 
 # Inicializa a aplicação
@@ -77,7 +81,7 @@ def start_app():
     app = QApplication([])
 
     app.setStyle('Fusion')
-    
+
     # Janela Principal
     window = MainWindow()
 
@@ -88,6 +92,4 @@ def start_app():
     app.exec()
 
 
-
 start_app()
-    
