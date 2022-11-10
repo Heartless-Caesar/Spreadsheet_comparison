@@ -74,7 +74,7 @@ class MainWindow(QDialog):
             if str(self.fname_one).split("/")[-1].split("'")[0] and str(self.fname_two).split("/")[-1].split("'")[0] != "" or "(":
                 self.sw = SecondWindow(str(self.fname_one).split("/")[-1].split("'")[0], str(
                     self.fname_two).split("/")[-1].split("'")[0], str(self.combobox.currentText()), str(self.input.text()))
-                self.sw.show()
+                # self.sw.show()
 
         except OSError:
             print("Algum erro ocorreu")
@@ -89,7 +89,7 @@ def start_app():
 
     # Janela Principal
     window = MainWindow()
-
+    window.setMinimumSize(700, 500)
     # Mostrar janela principal
     window.show()
 

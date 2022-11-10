@@ -67,9 +67,11 @@ class SecondWindow(QWidget):
         # O resultado irá apresentar qual
         df_diff = df_diff.query("Exist != 'both'")
 
+        df_diff.to_excel(f"~/Documents/{self.input}.xlsx")
+
         print(df_diff)
 
-        self.load_excel_data(df_diff)
+        # self.load_excel_data(df_diff)
 
     def compare_same_shape(self, file_one, file_two):
         df_1 = pd.read_excel(file_one, index_col=0)
@@ -87,7 +89,7 @@ class SecondWindow(QWidget):
 
             df = pd.read_excel(f"~/Documents/{self.input}.xlsx")
 
-            self.load_excel_data(df)
+            # self.load_excel_data(df)
 
         else:
             print("Files are not similar")
