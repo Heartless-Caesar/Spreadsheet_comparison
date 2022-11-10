@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QTableWidget, QTableWidgetItem, QMainWindow, QVBoxLayout, QTableWidgetItem
 from PyQt5 import uic
 import pandas as pd
-import xlwings as xl
+import datetime
 import os
 
 
@@ -39,7 +39,7 @@ class SecondWindow(QWidget):
         if (df_model.size == 0):
             return
 
-        #df_model.fillna('', inplace=True)
+        df_model.fillna('', inplace=True)
 
         self.table.setRowCount(len(df_model))
         self.table.setColumnCount(len(df_model.columns))
@@ -70,30 +70,24 @@ class SecondWindow(QWidget):
         self.load_excel_data(df_diff)
 
     def compare_same_shape(self, file_one, file_two):
-        # with xl.App(visible=False) as app:
-        #     wb_1 = app.books.open(file_one)
-        #     ws_1 = wb_1.sheets(1)
-
-        #     wb_2 = app.books.open(file_two)
-        #     ws_2 = wb_2.sheets(1)
-
-        #     for cell in ws_2.used_range:
-        #         val_ant = ws_1.range((cell.row, cell.column)).value
-        #         if cell.value != val_ant:
-        #             cell.api.AddComment(f"Valor de {wb_1.name}: {val_ant}")
-        #             cell.color = (255, 71, 76)
-
         df_1 = pd.read_excel(file_one, index_col=0)
 
         df_2 = pd.read_excel(file_two, index_col=0)
 
         if df_1.shape == df_2.shape:
 
-            df_diff = df_1.compare(df_2)
+            df_diff = df_1.reset_index(drop=True).compare(
+                df_2.reset_index(drop=True))
 
             print(df_diff)
 
-            df_diff.to_excel(os.getcwd() + "/Diff.xlsx")
+            d = datetime.date.today().strftime("%d-%m-%Y")
+
+            df_diff.to_excel(f"{os.getcwd()}/Same_Diff_{d}.xlsx")
+
+            df = pd.read_excel("Diff.xlsx")
+
+            self.load_excel_data(df)
 
         else:
             print("Files are not similar")

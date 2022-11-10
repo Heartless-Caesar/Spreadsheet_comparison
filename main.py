@@ -16,6 +16,7 @@ class MainWindow(QDialog):
         # Selecionar se os arquivos tem o mesmo numero de
         self.combobox = self.findChild(QComboBox, "comboBox")
         self.combobox.addItems(["Sim", "Não"])
+        self.sw = None
 
         # Propriedades que irão ter o nome do arquivo para o pandas processar
         self.fname_one = ""
