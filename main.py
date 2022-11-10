@@ -89,6 +89,9 @@ def start_app():
 
     # Janela Principal
     window = MainWindow()
+
+    # TODO Use layout to make responsive widgets
+    # TODO Set alerts for when files have finished downloading
     window.setMinimumSize(700, 500)
     # Mostrar janela principal
     window.show()
