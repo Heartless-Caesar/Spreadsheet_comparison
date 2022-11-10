@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QPushButton, QLabel, QFileDialog, QDialog, QComboBox, QMainWindow, QMessageBox, QVBoxLayout, QTableWidget, QWidget
+from PyQt5.QtWidgets import QApplication, QPushButton, QLabel, QFileDialog, QDialog, QComboBox, QLineEdit, QMainWindow, QMessageBox, QVBoxLayout, QTableWidget, QWidget
 from display_sheet import SecondWindow
 from PyQt5 import uic
 
@@ -17,6 +17,8 @@ class MainWindow(QDialog):
         self.combobox = self.findChild(QComboBox, "comboBox")
         self.combobox.addItems(["Sim", "Não"])
         self.sw = None
+
+        self.input = self.findChild(QLineEdit, "lineEdit")
 
         # Propriedades que irão ter o nome do arquivo para o pandas processar
         self.fname_one = ""
@@ -49,8 +51,9 @@ class MainWindow(QDialog):
                 self, "Selecione um arquivo", "", "(*.xlsx);;(*.ods);;All Files (*)")
 
             if str(self.fname_one) != '':
-                self.label_one.setText(
-                    str(self.fname_one).split("/")[-1].split("'")[0])
+                if str(self.fname_one).split("/")[-1].split("'")[0] != '(':
+                    self.label_one.setText(
+                        str(self.fname_one).split("/")[-1].split("'")[0])
         except FileNotFoundError as e:
             print("Escolha dois arquivos para realizar a comparação " + str(e))
 
@@ -60,8 +63,9 @@ class MainWindow(QDialog):
                 self, "Selecione um arquivo", "", "(*.xlsx);;(*.ods);;All Files (*)")
 
             if str(self.fname_two) != '':
-                self.label_two.setText(
-                    str(self.fname_two).split("/")[-1].split("'")[0])
+                if str(self.fname_two).split("/")[-1].split("'")[0] != '(':
+                    self.label_two.setText(
+                        str(self.fname_two).split("/")[-1].split("'")[0])
         except FileNotFoundError as e:
             print("Escolha dois arquivos para realizar a comparação " + str(e))
 
@@ -69,7 +73,7 @@ class MainWindow(QDialog):
         try:
             if str(self.fname_one).split("/")[-1].split("'")[0] and str(self.fname_two).split("/")[-1].split("'")[0] != "" or "(":
                 self.sw = SecondWindow(str(self.fname_one).split("/")[-1].split("'")[0], str(
-                    self.fname_two).split("/")[-1].split("'")[0], str(self.combobox.currentText()))
+                    self.fname_two).split("/")[-1].split("'")[0], str(self.combobox.currentText()), str(self.input.text()))
                 self.sw.show()
 
         except OSError:

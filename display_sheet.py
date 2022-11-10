@@ -2,13 +2,15 @@ from PyQt5.QtWidgets import QWidget, QTableWidget, QTableWidgetItem, QMainWindow
 from PyQt5 import uic
 import pandas as pd
 import datetime
+import random
 import os
 
 
 class SecondWindow(QWidget):
-    def __init__(self, fname_one, fname_two, option):
+    def __init__(self, fname_one, fname_two, option, inputData):
         super().__init__()
         self.setWindowTitle("Table view")
+        self.input = inputData
         self.window_two = QMainWindow()
         self.window_width, self.window_height = 700, 500
         self.resize(self.window_width, self.window_height)
@@ -81,11 +83,9 @@ class SecondWindow(QWidget):
 
             print(df_diff)
 
-            d = datetime.date.today().strftime("%d-%m-%Y")
+            df_diff.to_excel(f"~/Documents/{self.input}.xlsx")
 
-            df_diff.to_excel(f"{os.getcwd()}/Same_Diff_{d}.xlsx")
-
-            df = pd.read_excel("Diff.xlsx")
+            df = pd.read_excel(f"~/Documents/{self.input}.xlsx")
 
             self.load_excel_data(df)
 
