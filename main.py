@@ -1,6 +1,8 @@
-from PyQt5.QtWidgets import QApplication, QPushButton, QLabel, QFileDialog, QDialog, QComboBox, QLineEdit, QMainWindow, QMessageBox, QVBoxLayout, QTableWidget, QWidget
+from PyQt5.QtWidgets import QApplication, QPushButton, QLabel, QFileDialog, QDialog, QComboBox, QLineEdit, QMessageBox
 from display_sheet import SecondWindow
 from PyQt5 import uic
+import webbrowser
+import os
 
 
 class MainWindow(QDialog):
@@ -45,6 +47,9 @@ class MainWindow(QDialog):
         # Executa comparacao de planilhas
         self.execute_button.clicked.connect(self.open_second_window)
 
+        self.help_button = self.findChild(QPushButton, "help_button")
+        self.help_button.clicked.connect(self.open_help_window)
+
     def open_file_dialog_one(self):
         try:
             self.fname_one = QFileDialog.getOpenFileName(
@@ -79,6 +84,12 @@ class MainWindow(QDialog):
         except OSError:
             print("Algum erro ocorreu")
 
+    def open_help_window(self):
+        try:
+            webbrowser.open_new_tab('file://' + os.path.realpath('Help.html'))
+        except:
+            print("An error ocurred")
+
 
 # Inicializa a aplicação
 def start_app():
@@ -92,7 +103,7 @@ def start_app():
 
     # TODO Use layout to make responsive widgets
     # TODO Set alerts for when files have finished downloading
-    window.setMinimumSize(700, 500)
+    #window.setMinimumSize(700, 500)
     # Mostrar janela principal
     window.show()
 
