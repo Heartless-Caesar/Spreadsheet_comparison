@@ -5,14 +5,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Ajuda</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel=”stylesheet”
-    href=”https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css”rel=”nofollow”
-    integrity=”sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm”
-    crossorigin=”anonymous”>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
   </head>
-  <body>
-    <div class="font-size:20">
+  <body style="background-color: #f5f5f5">
+    <div class="h2 px-5 pt-3">
       Primeiros passos com o comparador de planilhas
     </div>
+    <div class="p-5">
+      <div class="h4">Selecionando os arquivos:</div>
+      <div class="pt-2">
+        Ao executar o programa irá perceber que há dois botões que servem para
+        selecionar os arquivos a serem comparados, ao selecionar o arquivo seu
+        nome irá aparecer próximo ao botão, para assim explicitar o que
+        selecionou.
+      </div>
+      <div class="h4 pt-4" style="margin-top: 50px">
+        Definindo se as planilhas são semelhantes ou não:
+      </div>
+      <div class="pt-2">
+        Logo abaixo dos botões é possível verificar que há uma caixa de seleção,
+        esta é talvez a parte mais importante dessa seleção.
+        <div class="pt-4">
+          <div class="h5">Sim</div>
+          <div>
+            Esta opção infere que as planilhas a serem comparadas possuem o
+            mesmo número de linhas e colunas, caso essa condição não seja
+            aplicável a planilha resultante apresentará dados inconsistentes
+          </div>
+        </div>
+        <div class="pt-4">
+          <div class="h5">Não</div>
+          <div>
+            Esta opção infere que as planilhas a serem comparadas
+            <b>NÃO</b> possuem o mesmo número de linhas e colunas, caso essa
+            condição não seja aplicável a planilha resultante apresentará dados
+            inconsistentes
+          </div>
+        </div>
+      </div>
+      <div class="h4 pt-4" style="margin-top: 25px">
+        Determinado o nome do arquivo a ser gerado
+      </div>
+      <div class="pt-2">
+        Após determinar se os arquivos são semelhantes ou não há uma caixa em
+        que é possível digitar o nome da planilha a ser gerada.
+      </div>
+      <div class="h4 pt-4" style="margin-top: 50px">
+        Detalhes dos dados gerados
+      </div>
+      <div>
+        <div class="h5 pt-3" style="margin-top: 25px">
+          Planilhas semelhantes
+        </div>
+        <div>
+          Ao visualizar a planilha resultante de duas semelhantes é possível
+          verificar que há dois índices utilizados para explicitar qual o valor
+          em cada planilha. Abaixo do índice 1 está o valor dos dados na
+          primeira planilha e abaixo do índice 2 está o valor dos dados na
+          segunda planilha.
+        </div>
+      </div>
+      <div class="h5 pt-4" style="margin-top: 25px">Planilhas diferentes</div>
+      <div>
+        Ao visualizar a planilha resultante de duas semelhantes os dados
+        aparentemente serão os mesmos, contudo há uma coluna a mais no final da
+        página.
+      </div>
+      <div>
+        <div class="h5 mx-3 pt-4" style="margin-top: 20px">
+          Dado aparece somente na primeira planilha
+        </div>
+        <div class="mx-5">
+          Quando o dado aparece apenas na primeira planilha a legenda
+          <b>left_only</b> será apresentada na última coluna.
+        </div>
+      </div>
+      <div>
+        <div class="h5 mx-3 pt-4">Dado aparece somente na segunda planilha</div>
+        <div class="mx-5">
+          Quando o dado aparece apenas na segunda planilha a legenda
+          <b>right_only</b> será apresentada na última coluna.
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

@@ -20,7 +20,7 @@ class SecondWindow(QWidget):
             if option == "Sim":
                 self.compare_same_shape(fname_one, fname_two)
             else:
-                self.compare_sheets(fname_one, fname_two)
+                self.compare_different_shape(fname_one, fname_two)
 
         except OSError as e:
             print(f"Error {e}")
@@ -35,7 +35,8 @@ class SecondWindow(QWidget):
         df_2 = pd.read_excel(file_two, index_col=0)
 
         # Merge dos arquivos para comparação
-        df_diff = pd.merge(df_1, df_2, how="outer", indicator="Exist")
+        df_diff = pd.merge(df_1, df_2, how="outer", indicator="Exist").rename(
+            {'left_only': '1', 'right_only': '2'})
 
         # O resultado irá apresentar qual
         df_diff = df_diff.query("Exist != 'both'")
